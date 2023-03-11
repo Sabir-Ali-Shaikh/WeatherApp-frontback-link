@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>weather app</title>
+  </head>
+  <body>
+    <div class="center top-nav">
+      <a href="#"><img src="./assets/nav/up-icon.svg" alt="up-icon" /></a>
+      <div class="tooltip">
+        <input type="text" class="city" />
+        <div class="suggestion-city hide">
+          <ul></ul>
+        </div>
+        <!-- <input type="text" class="city" list="listid" />
+        <datalist id="listid">
+          <option value="kolkata"></option>
+          <option value="new delhi"></option>
+        </datalist> -->
+        <!-- 
+        <div class="top">Enter city</div> -->
+      </div>
+      <a href="#"><img src="./assets/nav/alert-icon.svg" alt="alert-icon" /></a>
+    </div>
+
+    <div class="Head container center">
+      <div class="temp-icon">
+        <div class="icon">
+          <img src="" alt="weather-icon" class="img-icon" />
+        </div>
+        <div class="temp-info">
+          <h4 class="temp"></h4>
+          <h4 class="feel-like"></h4>
+      
+        </div>
+      </div>
+      <span class="quote font">
+        Make the most of this nice weather that I generated for you or else
+      </span>
+      <div class="more-info">
+        <h5 class="country font"></h5>
+        <h5 class="text font"></h5>
+        <h5 class="longitude font"></h5>
+        <h5 class="latitude font"></h5>
+        <h5 class="tempF font "></h5>
+      </div>
+    </div>
+    
+    <script src="./script/script.js"></script>
+  </body>
+</html>
