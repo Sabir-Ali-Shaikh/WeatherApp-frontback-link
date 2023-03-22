@@ -42,13 +42,13 @@ function weatherInfo(res) {
   tempF.innerHTML = `TempF: ${res.condition.tempF}`;
 
   if (res.condition.cloud < 20) {
-    icon.src = "../assets/weather/64x64/day/113.svg";
+    icon.src = "../assets/weather/day/113.svg";
   } else if (res.condition.cloud > 20 && res.condition.cloud < 50) {
-    icon.src = "../assets/weather/64x64/day/116.svg";
+    icon.src = "../assets/weather/day/116.svg";
   } else if (res.condition.cloud > 50 && res.condition.cloud < 80) {
-    icon.src = "../assets/weather/64x64/day/119.svg";
+    icon.src = "../assets/weather/day/119.svg";
   } else {
-    icon.src = "../assets/weather/64x64/day/143.svg";
+    icon.src = "../assets/weather/day/143.svg";
   }
 }
 
@@ -84,7 +84,7 @@ suggest.firstElementChild.addEventListener("click", (e) => {
 });
 
 window.addEventListener("click", (e) => {
-  if (e.target == locName) {
+  if (e.target === locName) {
     suggest.classList.remove("hide");
   } else {
     suggest.classList.add("hide");
@@ -92,7 +92,7 @@ window.addEventListener("click", (e) => {
 });
 
 locName.addEventListener("keyup", (e) => {
-  if (e.key == "Enter") {
+  if (e.key === "Enter") {
     getWeather(e.target.value);
   }
 });
