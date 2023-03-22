@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
 * {
   font-family: "Poppins", sans-serif;
   margin: 0;
@@ -168,7 +167,17 @@ body {
   list-style: none;
 
 }
+.suggestion-city ul li {
+  cursor: pointer;
+  padding: 10px 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
 
 .hide {
   display: none;
+}
+
+h4,h5 {
+  font-weight: 600;
 }

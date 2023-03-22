@@ -1,6 +1,6 @@
 let locName = document.querySelector(".city");
 let currentTemp = document.querySelector(".temp");
-let tempF=document.querySelector(".tempF")
+let tempF = document.querySelector(".tempF");
 let country = document.querySelector(".country");
 let text = document.querySelector(".text");
 let longitude = document.querySelector(".longitude");
@@ -11,24 +11,10 @@ let suggest = document.querySelector(".suggestion-city");
 let iconPath;
 let response;
 
-const suggestionCity = [
-  "kolkata",
-  "bihar",
-  "barrackpore",
-  "hisar",
-  "pathankot",
-  "Delhi",
-  "Amritsar",
-  "kanpur",
-  "Surat",
-];
+const suggestionCity = [];
 
-async function getWeather(query) { 
-  // for server API change query to LocationInput
-  // response = await fetch(
-  //   `http://api.weatherapi.com/v1/current.json?key=0c80b2b56f1943ada19100744230103&q=${locationInput}&aqi=no`
-  // )
-  response = await fetch(`http://localhost:5000/?city=${query}`)
+async function getWeather(query) {
+  response = await fetch(`http://localhost:5000/get-weather?city=${query}`)
     .then((data) => {
       return data.json();
     })
@@ -43,57 +29,54 @@ async function getWeather(query) {
 
 function weatherInfo(res) {
   console.log(res);
-  locName.value = ` ${res.location.city}`;
-  // country.innerHTML = `Country:  ${res.location.country}`;
+
+  locName.value = ` ${
+    res.location.city.charAt(0).toUpperCase() +
+    res.location.city.slice(1, res.location.city.length)
+  }`;
   longitude.innerHTML = `Longitude: ${res.location.long}`;
   latitude.innerHTML = `Latitude: ${res.location.lat}`;
   text.innerHTML = `Uv: ${res.condition.uv}`;
   feel.innerHTML = `Feels  ${res.condition.humidity}<sup>°</sup>`;
   currentTemp.innerHTML = `${res.condition.tempC} <sup>°</sup>`;
   tempF.innerHTML = `TempF: ${res.condition.tempF}`;
-  // iconPath = res.current.condition.icon.replace(
-  //   "//cdn.weatherapi.com",
-  //   "../assets"
-  // );
-  // iconPath = iconPath.replace(".png", ".svg");
-  // // icon.src = response.current.condition.icon;
-  // icon.src = iconPath;
 
-  // console.log(iconPath);
+  if (res.condition.cloud < 20) {
+    icon.src = "../assets/weather/64x64/day/113.svg";
+  } else if (res.condition.cloud > 20 && res.condition.cloud < 50) {
+    icon.src = "../assets/weather/64x64/day/116.svg";
+  } else if (res.condition.cloud > 50 && res.condition.cloud < 80) {
+    icon.src = "../assets/weather/64x64/day/119.svg";
+  } else {
+    icon.src = "../assets/weather/64x64/day/143.svg";
+  }
 }
 
+async function getCities(query) {
+  response = await fetch(`http://localhost:5000/city`)
+    .then((data) => {
+      return data.json();
+    })
+    .then((d) => {
+      d.forEach((city) => {
+        suggestionCity.push(city);
+      });
+    })
+    .then(() => addSuggestion())
+    .catch((e) => {
+      console.error(e);
+      alert(e);
+    });
+}
 
-
-
-// function weatherInfo(res) {
-  // console.log(res);
-  // locName.value = ` ${res.location.city}`;
-  // country.innerHTML = `Country:  ${res.location.country}`;
-  // longitude.innerHTML = `Longitude: ${res.location.lon}`;
-  // latitude.innerHTML = `Latitude: ${res.location.lat}`;
-  // text.innerHTML = `Type: ${res.current.condition.text}`;
-  // feel.innerHTML = `Feels  ${res.current.feelslikeC}<sup>°</sup>`;
-  // currentTemp.innerHTML = `${res.current.tempC} <sup>°</sup>`;
-  // iconPath = res.current.condition.icon.replace(
-  //   "//cdn.weatherapi.com",
-  //   "../assets"
-  // );
-  // iconPath = iconPath.replace(".png", ".svg");
-  // // icon.src = response.current.condition.icon;
-  // icon.src = iconPath;
-
-  // console.log(iconPath);
-// }
-
-
-(function addSuggestion() {
+function addSuggestion() {
   suggestionCity.forEach((city) => {
+    city = city.charAt(0).toUpperCase() + city.slice(1, city.length);
     let li = document.createElement("li");
     li.textContent = city;
     suggest.firstElementChild.appendChild(li);
-    // console.log(suggest.firstElementChild.appendChild(li));
   });
-})();
+}
 
 suggest.firstElementChild.addEventListener("click", (e) => {
   locName.value = e.target.textContent;
@@ -115,5 +98,6 @@ locName.addEventListener("keyup", (e) => {
 });
 
 (() => {
+  getCities();
   getWeather("patna");
 })();
