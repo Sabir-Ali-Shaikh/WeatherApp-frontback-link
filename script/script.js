@@ -93,7 +93,8 @@ window.addEventListener("click", (e) => {
 
 locName.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
-    getWeather(e.target.value);
+    console.log(e.target.value);
+    getWeather(e.target.value.trim());
   }
 });
 
