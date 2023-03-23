@@ -10,6 +10,11 @@ body {
   color: white;
 }
 
+.top-nav {
+  width: 90%;
+  margin: auto;
+}
+
 .center {
   display: flex;
   justify-content: center;
@@ -44,6 +49,7 @@ body {
 .more-info {
   display: flex;
   text-align: center;
+  flex-direction: column;
 }
 
 .temp-icon {
@@ -60,7 +66,7 @@ body {
 }
 
 .font {
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin: 10px;
   padding: 5px;
 }
@@ -96,39 +102,33 @@ body {
   display: block;
 }
 
-@media (min-width: 200px) {
-  .top-nav {
-    width: 90%;
-    margin: auto;
-  }
+.top-nav a {
+  width: 7%;
+}
 
-  .top-nav a {
-    width: 7%;
-  }
+.icon {
+  width: 40%;
+}
 
-  .top-nav a img {
-    width: 100%;
-  }
+.container {
+  width: 100%;
+}
 
-  .tooltip input {
-    width: 90%;
-    font-size: 1.7rem;
-  }
+.tooltip input {
+  width: 90%;
+  font-size: 1.7rem;
+}
 
-  .more-info {
-    flex-direction: column;
-  }
 
-  .container {
-    width: 100%;
-  }
-
-  .icon {
-    width: 40%;
-  }
+.top-nav a img {
+  width: 100%;
 }
 
 @media (min-width: 820px) {
+  .font {
+    font-size: 1.5rem;
+  }
+
   .tooltip input {
     font-size: 4rem;
   }
@@ -139,6 +139,7 @@ body {
 
   .more-info {
     flex-direction: row;
+    font-size: 2rem;
   }
 
   .container {
